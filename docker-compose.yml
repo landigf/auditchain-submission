@@ -1,0 +1,231 @@
+# ── AuditChain — Full Stack (API + Metaflow Service + UI) ─────────────────────
+#
+# Usage:
+#   cd solution/
+#   ANTHROPIC_API_KEY=sk-ant-... docker compose up --build
+#
+# Services after startup:
+#   API:           http://localhost:8000       FastAPI backend
+#   API docs:      http://localhost:8000/docs  Swagger UI
+#   Metaflow Meta: http://localhost:8080       Metadata service
+#   Metaflow UI:   http://localhost:3000       Visual DAG viewer (pipeline steps)
+#
+# Seed DB after first startup:
+#   docker compose exec api python -m db.loaders
+#
+# Run a flow and see it in the Metaflow UI:
+#   docker compose exec api python agent/procurement_flow.py run \
+#     --raw_request "I need 50 chairs, budget 12000 EUR, within 10 business days"
+#
+# Required env vars:
+#   OPENAI_API_KEY      (or ANTHROPIC_API_KEY if LLM_PROVIDER=claude)
+# Optional:
+#   USE_FUZZY=true      Enable fuzzy logic risk scorer
+#   LLM_PROVIDER=claude Use Claude instead of OpenAI (default)
+
+services:
+
+  # ── FastAPI backend ──────────────────────────────────────────────────────────
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./auditchain.db
+      - LLM_PROVIDER=${LLM_PROVIDER:-azure_openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY:-}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT:-}
+      - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT:-gpt-4o}
+      - AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION:-2024-08-01-preview}
+      - USE_FUZZY=${USE_FUZZY:-false}
+      - METAFLOW_SERVICE_URL=http://metaflow-metadata:8080
+      - METAFLOW_DEFAULT_METADATA=service
+      - METAFLOW_DEFAULT_DATASTORE=local
+      - METAFLOW_DATASTORE_SYSROOT_LOCAL=/metaflow-store
+      - METAFLOW_CARD_LOCALROOT=/metaflow-store
+      - USERNAME=auditchain
+      - TEAMS_BOT_URL=http://teams-bot:3978
+    volumes:
+      - metaflow_datastore:/metaflow-store
+    depends_on:
+      metaflow-migration:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # ── Metaflow PostgreSQL ──────────────────────────────────────────────────────
+  metaflow-db:
+    image: "postgres:14"
+    environment:
+      POSTGRES_USER: metaflow
+      POSTGRES_PASSWORD: metaflow
+      POSTGRES_DB: metaflow
+    ports:
+      - "5433:5432"
+    volumes:
+      - metaflow_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metaflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Metaflow migration (runs once on startup) ─────────────────────────────────
+  metaflow-migration:
+    build:
+      context: https://github.com/Netflix/metaflow-service.git
+      dockerfile: Dockerfile.migration_service
+    environment:
+      - MF_METADATA_DB_HOST=metaflow-db
+      - MF_METADATA_DB_PORT=5432
+      - MF_METADATA_DB_USER=metaflow
+      - MF_METADATA_DB_PSWD=metaflow
+      - MF_METADATA_DB_NAME=metaflow
+      - MF_MIGRATION_ENDPOINTS_ENABLED=1
+      - MF_MIGRATION_PORT=8082
+    depends_on:
+      metaflow-db:
+        condition: service_healthy
+    command: ["python", "/root/run_goose.py"]
+
+  # ── Metaflow metadata service (port 8080) ────────────────────────────────────
+  metaflow-metadata:
+    build:
+      context: https://github.com/Netflix/metaflow-service.git
+      dockerfile: Dockerfile.metadata_service
+    ports:
+      - "8080:8080"
+    environment:
+      - MF_METADATA_DB_HOST=metaflow-db
+      - MF_METADATA_DB_PORT=5432
+      - MF_METADATA_DB_USER=metaflow
+      - MF_METADATA_DB_PSWD=metaflow
+      - MF_METADATA_DB_NAME=metaflow
+      - MF_METADATA_PORT=8080
+      - MF_METADATA_HOST=0.0.0.0
+      - LOGLEVEL=WARNING
+    depends_on:
+      metaflow-migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ── Metaflow UI backend (port 8083) ───────────────────────────────────────────
+  metaflow-ui-backend:
+    build:
+      context: https://github.com/Netflix/metaflow-service.git
+      dockerfile: Dockerfile.ui_service
+      args:
+        UI_ENABLED: 1
+    ports:
+      - "8083:8083"
+    environment:
+      - MF_METADATA_DB_HOST=metaflow-db
+      - MF_METADATA_DB_PORT=5432
+      - MF_METADATA_DB_USER=metaflow
+      - MF_METADATA_DB_PSWD=metaflow
+      - MF_METADATA_DB_NAME=metaflow
+      - MF_UI_METADATA_PORT=8083
+      - MF_UI_METADATA_HOST=0.0.0.0
+      - LOGLEVEL=INFO
+      - UI_ENABLED=1
+      - FEATURE_S3_DISABLE=1
+      - FEATURE_PREFETCH_DISABLE=0
+      - FEATURE_CACHE_DISABLE=0
+      - FEATURE_REFINE_DISABLE=0
+      - FEATURE_WS_DISABLE=0
+      - PREFETCH_RUNS_SINCE=2592000
+      - PREFETCH_RUNS_LIMIT=50
+      - METAFLOW_DATASTORE_SYSROOT_LOCAL=/metaflow-store
+      - METAFLOW_CARD_LOCALROOT=/metaflow-store
+      # Required for cache workers to resolve local artifact paths
+      - METAFLOW_DEFAULT_DATASTORE=local
+      - METAFLOW_DEFAULT_METADATA=service
+      - METAFLOW_SERVICE_URL=http://metaflow-metadata:8080
+      - USERNAME=auditchain
+    volumes:
+      - metaflow_datastore:/metaflow-store
+    # Card-path bridge: reader looks under <ds-root>/mf.cards/<Flow>/ but writer
+    # stores under <ds-root>/<Flow>/. Symlink bridges the gap.
+    command: >-
+      sh -c "
+        mkdir -p /metaflow-store/.metaflow/mf.cards &&
+        ln -sfn /metaflow-store/.metaflow/Phase2Flow /metaflow-store/.metaflow/mf.cards/Phase2Flow 2>/dev/null;
+        ui_backend_service
+      "
+    depends_on:
+      metaflow-migration:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ── Metaflow UI frontend (port 3000) ──────────────────────────────────────────
+  metaflow-ui:
+    build:
+      context: https://github.com/Netflix/metaflow-ui.git
+    ports:
+      - "3000:3000"
+    environment:
+      - METAFLOW_SERVICE=/api
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.disabled
+    volumes:
+      - ./metaflow-ui-nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - metaflow-ui-backend
+    profiles:
+      - ui
+
+  # ── Teams Bot (profile: teams) ────────────────────────────────────────────────
+  teams-bot:
+    build: ../teams_bot
+    ports:
+      - "3978:3978"
+    environment:
+      - MICROSOFT_APP_ID=${MICROSOFT_APP_ID:-}
+      - MICROSOFT_APP_PASSWORD=${MICROSOFT_APP_PASSWORD:-}
+      - MICROSOFT_TENANT_ID=${MICROSOFT_TENANT_ID:-}
+      - BACKEND_URL=http://api:8000
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:5173}
+      - CONV_STORE_PATH=/data/conversations.json
+      - PORT=3978
+    volumes:
+      - teams_data:/data
+    depends_on:
+      - api
+    profiles:
+      - teams
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:3978/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── ngrok tunnel for Teams (profile: teams) ─────────────────────────────────
+  ngrok:
+    image: ngrok/ngrok:latest
+    command: http teams-bot:3978
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN:-}
+    ports:
+      - "4040:4040"
+    depends_on:
+      - teams-bot
+    profiles:
+      - teams
+
+volumes:
+  metaflow_db_data:
+  metaflow_datastore:
+  teams_data:

@@ -1,0 +1,25 @@
+# LLM providers — install both, use LLM_PROVIDER env var to switch
+# Claude (paid, use for demo): set ANTHROPIC_API_KEY
+# OpenAI (default, use for dev): set OPENAI_API_KEY
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+anthropic==0.40.0
+openai>=1.0.0
+sqlalchemy==2.0.36
+pydantic==2.10.3
+pydantic-settings==2.6.1
+python-dotenv==1.0.1
+pyyaml==6.0.2
+reportlab==4.3.0
+python-multipart==0.0.20
+aiofiles==24.1.0
+httpx==0.28.1
+scikit-fuzzy>=0.4.2
+networkx>=3.4
+numpy>=1.24
+scipy>=1.11
+packaging>=23.0
+psycopg2-binary>=2.9.9
+apscheduler>=3.10.4
+metaflow>=2.12.0
+pytest>=7.0

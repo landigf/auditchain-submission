@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(4px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-scale-in {
+  animation: fadeScaleIn 0.18s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.18s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.25s ease-out forwards;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-neutral-900 border border-neutral-800 rounded-xl p-6;
+  }
+  .badge-approved {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-green-950 text-green-400 border border-green-800;
+  }
+  .badge-escalated {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-orange-950 text-orange-400 border border-orange-700;
+  }
+  .badge-rejected {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-red-950 text-red-400 border border-red-800;
+  }
+}

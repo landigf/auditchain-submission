@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AuditChain Eval Tool</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f0; color: #1a1a1a; padding: 20px; max-width: 1400px; margin: 0 auto; }
+h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+h2 { font-size: 16px; font-weight: 600; margin: 24px 0 12px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; }
+.subtitle { color: #666; font-size: 13px; margin-bottom: 20px; }
+.row { display: flex; gap: 16px; flex-wrap: wrap; }
+.card { background: #fff; border: 1px solid #e0e0d8; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.card-half { flex: 1; min-width: 300px; }
+label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+input[type=text], input[type=number], textarea, select {
+  width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px;
+  font-size: 14px; font-family: inherit; background: #fafaf7;
+}
+textarea { resize: vertical; min-height: 80px; }
+button {
+  padding: 8px 16px; border: none; border-radius: 4px; font-size: 13px;
+  font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.btn-primary { background: #1a1a1a; color: #fff; }
+.btn-primary:hover { background: #333; }
+.btn-primary:disabled { background: #999; cursor: not-allowed; }
+.btn-secondary { background: #e8e8e0; color: #333; }
+.btn-secondary:hover { background: #ddd; }
+.btn-danger { background: #c0392b; color: #fff; }
+.btn-danger:hover { background: #a83225; }
+.btn-small { padding: 4px 10px; font-size: 12px; }
+.btn-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.metric-row { display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+.metric { background: #fafaf7; border: 1px solid #e8e8e0; border-radius: 6px; padding: 12px 16px; text-align: center; min-width: 120px; flex: 1; }
+.metric .value { font-size: 28px; font-weight: 700; }
+.metric .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.metric.good .value { color: #2d8a4e; }
+.metric.warn .value { color: #b8860b; }
+.metric.bad .value { color: #c0392b; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px 10px; background: #f5f5f0; border-bottom: 2px solid #ddd; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
+td { padding: 7px 10px; border-bottom: 1px solid #eee; }
+tr:hover { background: #fafaf7; }
+.tag { display: inline-block; padding: 2px 7px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.tag-approved { background: #e6f4ea; color: #1e7e34; }
+.tag-escalated { background: #fff3cd; color: #856404; }
+.tag-rejected { background: #fde8e8; color: #a02020; }
+.tag-clarification_needed { background: #e8f0fe; color: #1a56db; }
+.tag-awaiting_approval { background: #fff3cd; color: #856404; }
+.tag-error { background: #eee; color: #666; }
+.progress-bar { width: 100%; height: 6px; background: #e8e8e0; border-radius: 3px; overflow: hidden; margin: 8px 0; }
+.progress-fill { height: 100%; background: #1a1a1a; transition: width 0.3s; border-radius: 3px; }
+.log { font-family: "SF Mono", "Consolas", monospace; font-size: 12px; background: #1a1a1a; color: #aaa; padding: 12px; border-radius: 6px; max-height: 300px; overflow-y: auto; white-space: pre-wrap; margin-top: 8px; }
+.log .ok { color: #6ec86e; }
+.log .err { color: #e06060; }
+.log .esc { color: #d4a930; }
+.log .info { color: #6eaac8; }
+.hidden { display: none; }
+.chart-wrap { max-width: 400px; margin: 0 auto; }
+.config-row { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; }
+.config-row > div { flex: 1; min-width: 150px; }
+#drop-zone {
+  border: 2px dashed #ccc; border-radius: 8px; padding: 24px; text-align: center;
+  color: #999; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+}
+#drop-zone:hover, #drop-zone.dragover { border-color: #666; background: #f0f0ea; }
+#drop-zone input { display: none; }
+.expandable { cursor: pointer; }
+.expandable:hover { background: #f0f0ea; }
+.detail-row td { padding: 12px; background: #fafaf7; font-size: 12px; }
+.detail-row pre { white-space: pre-wrap; max-height: 300px; overflow-y: auto; }
+.inline-tag { font-size: 11px; padding: 1px 5px; border-radius: 2px; margin-right: 3px; }
+</style>
+</head>
+<body>
+
+<h1>AuditChain Eval Tool</h1>
+<p class="subtitle">Data-driven testing: run requests, measure compliance, iterate fast</p>
+
+<!-- Config -->
+<div class="card">
+  <h2 style="margin-top:0">Configuration</h2>
+  <div class="config-row">
+    <div>
+      <label>API base URL</label>
+      <input type="text" id="api-url" value="">
+    </div>
+    <div>
+      <label>Concurrency</label>
+      <input type="number" id="concurrency" value="2" min="1" max="10" style="width:80px">
+    </div>
+    <div style="flex:0">
+      <label>&nbsp;</label>
+      <button class="btn-secondary btn-small" onclick="testConnection()">Test</button>
+      <span id="conn-status" style="font-size:12px;margin-left:6px"></span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Left: Input -->
+  <div class="card card-half">
+    <h2 style="margin-top:0">Input</h2>
+
+    <!-- Quick load from backend -->
+    <h3>Load test data from backend</h3>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="loadFromBackend()">Load requests.json (304 scenarios)</button>
+    </div>
+    <div id="backend-load-info" class="hidden" style="margin-top:8px;font-size:13px"></div>
+
+    <!-- Single request -->
+    <h3>Single request</h3>
+    <textarea id="single-text" placeholder="500 laptops for Berlin office, budget 400k EUR, need by end of month, prefer Dell"></textarea>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="runSingle()">Run</button>
+    </div>
+
+    <!-- Batch upload -->
+    <h3>Or upload CSV / JSON</h3>
+    <div id="drop-zone" onclick="document.getElementById('file-input').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
+      Drop CSV / JSON here, or click
+      <input type="file" id="file-input" accept=".csv,.json" onchange="handleFile(this.files[0])">
+    </div>
+    <div id="file-info" class="hidden" style="margin-top:8px;font-size:13px"></div>
+
+    <div class="config-row" style="margin-top:12px">
+      <div>
+        <label>Run how many</label>
+        <select id="run-count">
+          <option value="5">5 (quick)</option>
+          <option value="10" selected>10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="all">All</option>
+        </select>
+      </div>
+      <div>
+        <label>Selection</label>
+        <select id="run-selection">
+          <option value="balanced">Balanced (all tags)</option>
+          <option value="random">Random</option>
+          <option value="first">First N</option>
+          <option value="adversarial">Adversarial (edge cases)</option>
+        </select>
+      </div>
+      <div style="flex:0">
+        <label>&nbsp;</label>
+        <button class="btn-primary" id="btn-run-batch" onclick="runBatch()" disabled>Run batch</button>
+      </div>
+    </div>
+    <div id="estimate" style="font-size:12px;color:#888;margin-top:6px"></div>
+
+    <!-- Load past results -->
+    <h3>Load past results</h3>
+    <div class="btn-row">
+      <button class="btn-secondary btn-small" onclick="document.getElementById('load-input').click()">Load JSON</button>
+      <input type="file" id="load-input" accept=".json" style="display:none" onchange="loadPastResults(this.files[0])">
+      <button class="btn-secondary btn-small" onclick="loadFromBackendStats()">Load from backend history</button>
+    </div>
+  </div>
+
+  <!-- Right: Progress + Log -->
+  <div class="card card-half">
+    <h2 style="margin-top:0">Execution</h2>
+    <div id="progress-section" class="hidden">
+      <div style="display:flex;justify-content:space-between;font-size:13px">
+        <span id="progress-text">0 / 0</span>
+        <span id="progress-time"></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div style="font-size:12px;color:#888" id="progress-eta"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-danger btn-small" onclick="stopBatch()">Stop</button>
+      <button class="btn-secondary btn-small" onclick="clearResults()">Clear results</button>
+      <button class="btn-secondary btn-small" onclick="clearLog()">Clear log</button>
+    </div>
+    <div class="log" id="log">Ready. Configure API URL and load test data.\n</div>
+  </div>
+</div>
+
+<!-- Results Dashboard -->
+<div id="results-section" class="hidden">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2 style="margin-top:0;border:none;padding:0">Results Dashboard</h2>
+      <div class="btn-row" style="margin:0">
+        <button class="btn-secondary btn-small" onclick="saveResults()">Save JSON</button>
+        <button class="btn-secondary btn-small" onclick="downloadCSV()">Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="metric-row" id="metrics-row"></div>
+
+    <!-- Charts -->
+    <div class="row">
+      <div class="card card-half">
+        <h3>Decision distribution</h3>
+        <div class="chart-wrap"><canvas id="chart-decisions"></canvas></div>
+      </div>
+      <div class="card card-half">
+        <h3>Per-scenario correctness</h3>
+        <div class="chart-wrap"><canvas id="chart-scenarios"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Scenario table -->
+    <h3>Per-scenario performance</h3>
+    <table id="scenario-table">
+      <thead><tr><th>Scenario</th><th>Count</th><th>Approved</th><th>Escalated</th><th>Rejected</th><th>Clarification</th><th>Error</th><th>Correct %</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Failures -->
+    <h3 style="margin-top:20px">Incorrect decisions <span id="failures-count" style="font-weight:400;color:#888"></span></h3>
+    <table id="failures-table">
+      <thead><tr><th>ID</th><th>Tags</th><th>Got</th><th>Expected</th><th>Request</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- All results table -->
+    <h3 style="margin-top:20px">All results <span id="results-count" style="font-weight:400;color:#888"></span></h3>
+    <div style="margin-bottom:8px">
+      <input type="text" id="filter-text" placeholder="Filter by ID, text, supplier, tag, decision..." oninput="renderResultsTable()" style="max-width:400px">
+    </div>
+    <div style="overflow-x:auto">
+      <table id="results-table">
+        <thead><tr><th>ID</th><th>Decision</th><th>Supplier</th><th>Confidence</th><th>Cost</th><th>AIS</th><th>Latency</th><th>Tags</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────
+let loadedRequests = [];
+let results = [];
+let running = false;
+let stopRequested = false;
+let chartsRendered = { decisions: null, scenarios: null };
+
+// ── Helpers ────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const apiUrl = () => ($('api-url').value || window.location.origin).replace(/\/$/, '');
+const log = (msg, cls) => {
+  const el = $('log');
+  const span = cls ? `<span class="${cls}">${msg}</span>` : msg;
+  el.innerHTML += span + '\n';
+  el.scrollTop = el.scrollHeight;
+};
+const clearLog = () => { $('log').innerHTML = ''; };
+
+// ── Expected outcomes per scenario tag ─────────────────────────────
+// Each tag maps to a list of acceptable decision outcomes.
+// A result is "correct" if its decision matches ANY of the acceptable outcomes
+// for ALL of its tags.
+const EXPECTED = {
+  // Standard: well-formed request, should approve or escalate (if budget high)
+  'standard':       { correct: ['approved', 'escalated', 'awaiting_approval'] },
+  // Threshold: budget near/above approval limit → must escalate
+  'threshold':      { correct: ['escalated', 'awaiting_approval'] },
+  // Lead time: tight delivery → escalate if <3 days, otherwise OK
+  'lead_time':      { correct: ['approved', 'escalated', 'awaiting_approval'] },
+  // Missing info: required fields absent → must ask for clarification
+  'missing_info':   { correct: ['clarification_needed'] },
+  // Contradictory: conflicting info → escalate or ask clarification
+  'contradictory':  { correct: ['escalated', 'clarification_needed', 'awaiting_approval'] },
+  // Restricted: preferred supplier is blocked → escalate or reject
+  'restricted':     { correct: ['escalated', 'rejected', 'awaiting_approval'] },
+  // Multilingual: non-English request → should still process (any outcome valid)
+  'multilingual':   { correct: ['approved', 'escalated', 'clarification_needed', 'awaiting_approval'] },
+  // Capacity: supplier capacity exceeded → escalate
+  'capacity':       { correct: ['escalated', 'approved', 'awaiting_approval'] },
+  // Multi-country: cross-border delivery → may escalate
+  'multi_country':  { correct: ['approved', 'escalated', 'awaiting_approval'] },
+};
+
+function isCorrect(decision, tags) {
+  if (!tags || tags.length === 0) return null; // unknown — no tags
+  for (const tag of tags) {
+    const exp = EXPECTED[tag];
+    if (exp && !exp.correct.includes(decision)) return false;
+  }
+  return true;
+}
+
+function expectedStr(tags) {
+  if (!tags || tags.length === 0) return '—';
+  const sets = tags.map(t => EXPECTED[t]?.correct || []);
+  if (sets.length === 0) return '—';
+  // Intersection
+  const inter = sets.reduce((a, b) => a.filter(x => b.includes(x)));
+  return inter.map(d => d.toUpperCase()).join(' / ');
+}
+
+// ── Connection test ────────────────────────────────────────────────
+async function testConnection() {
+  const el = $('conn-status');
+  el.textContent = 'Testing...';
+  el.style.color = '#888';
+  try {
+    const r = await fetch(apiUrl() + '/health', { signal: AbortSignal.timeout(8000) });
+    if (r.ok) {
+      const d = await r.json();
+      el.textContent = `Connected (${d.version || 'ok'})`;
+      el.style.color = '#2d8a4e';
+    } else {
+      el.textContent = `Error ${r.status}`;
+      el.style.color = '#c0392b';
+    }
+  } catch (e) {
+    el.textContent = 'Failed: ' + e.message;
+    el.style.color = '#c0392b';
+  }
+}
+
+// ── Load from backend ──────────────────────────────────────────────
+async function loadFromBackend() {
+  log('Loading requests from backend...', 'info');
+  try {
+    const r = await fetch(apiUrl() + '/api/demo-requests', { signal: AbortSignal.timeout(10000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    // The endpoint returns a list or { requests: [...] }
+    loadedRequests = Array.isArray(data) ? data : (data.requests || [data]);
+    $('backend-load-info').textContent = `Loaded ${loadedRequests.length} requests from backend`;
+    $('backend-load-info').classList.remove('hidden');
+    $('btn-run-batch').disabled = false;
+    updateEstimate();
+    log(`Loaded ${loadedRequests.length} test requests`, 'ok');
+    // Show tag distribution
+    const tagCounts = {};
+    loadedRequests.forEach(r => (r.scenario_tags || []).forEach(t => tagCounts[t] = (tagCounts[t] || 0) + 1));
+    const tagStr = Object.entries(tagCounts).sort((a,b) => b[1]-a[1]).map(([t,c]) => `${t}:${c}`).join(', ');
+    log(`  Tags: ${tagStr}`, 'info');
+  } catch (e) {
+    log('Failed to load: ' + e.message, 'err');
+    // Fallback: try loading from file
+    log('Tip: Upload requests.json manually if backend is not reachable', 'info');
+  }
+}
+
+async function loadFromBackendStats() {
+  log('Loading history from backend...', 'info');
+  try {
+    const r = await fetch(apiUrl() + '/api/history?limit=200', { signal: AbortSignal.timeout(10000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    const records = data.records || data;
+    log(`Loaded ${records.length} historical records`, 'ok');
+  } catch (e) {
+    log('Failed: ' + e.message, 'err');
+  }
+}
+
+// ── File handling ──────────────────────────────────────────────────
+function handleDrop(e) {
+  e.preventDefault();
+  e.target.closest('#drop-zone').classList.remove('dragover');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+}
+
+async function handleFile(file) {
+  if (!file) return;
+  const text = await file.text();
+  try {
+    if (file.name.endsWith('.json')) {
+      const data = JSON.parse(text);
+      loadedRequests = Array.isArray(data) ? data : (data.requests || [data]);
+    } else {
+      loadedRequests = parseCSV(text);
+    }
+    $('file-info').textContent = `Loaded ${loadedRequests.length} requests from ${file.name}`;
+    $('file-info').classList.remove('hidden');
+    $('btn-run-batch').disabled = false;
+    updateEstimate();
+    log(`Loaded ${loadedRequests.length} requests from ${file.name}`);
+  } catch (e) {
+    log('Parse error: ' + e.message, 'err');
+  }
+}
+
+function parseCSV(text) {
+  const lines = text.split('\n').filter(l => l.trim());
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.slice(1).map(line => {
+    const vals = line.match(/(".*?"|[^,]*)/g) || [];
+    const obj = {};
+    headers.forEach((h, i) => {
+      let v = (vals[i] || '').trim().replace(/^"|"$/g, '');
+      obj[h] = v;
+    });
+    return obj;
+  });
+}
+
+function updateEstimate() {
+  const count = $('run-count').value === 'all' ? loadedRequests.length : parseInt($('run-count').value);
+  const actual = Math.min(count, loadedRequests.length);
+  const secs = actual * 25;
+  $('estimate').textContent = `${actual} requests x ~25s = ~${Math.ceil(secs / 60)} min`;
+}
+$('run-count').addEventListener('change', updateEstimate);
+
+// Auto-detect API URL
+(function() {
+  const loc = window.location.origin;
+  if (loc.includes('localhost') || loc.includes('127.0.0.1')) {
+    $('api-url').value = loc;
+  } else if (loc.includes('azurecontainerapps.io')) {
+    $('api-url').value = loc;
+  } else {
+    $('api-url').placeholder = 'Enter your API URL';
+  }
+})();
+
+// ── Build raw text from request fields ─────────────────────────────
+function buildRawText(req) {
+  if (req.request_text && req.request_text.trim()) return req.request_text;
+  const parts = [];
+  if (req.quantity) parts.push(`${req.quantity} ${req.unit_of_measure || 'units'}`);
+  if (req.category_l2) parts.push(`of ${req.category_l2}`);
+  else if (req.category_l1) parts.push(`of ${req.category_l1} items`);
+  if (req.budget_amount) parts.push(`budget ${req.budget_amount} ${req.currency || 'EUR'}`);
+  if (req.delivery_countries) {
+    const countries = Array.isArray(req.delivery_countries) ? req.delivery_countries.join(', ') : req.delivery_countries;
+    parts.push(`for ${countries}`);
+  }
+  if (req.required_by_date) parts.push(`by ${req.required_by_date}`);
+  if (req.preferred_supplier_mentioned) parts.push(`prefer ${req.preferred_supplier_mentioned}`);
+  return parts.join(', ') || 'procurement request';
+}
+
+// ── Select requests ────────────────────────────────────────────────
+function selectRequests() {
+  const count = $('run-count').value === 'all' ? loadedRequests.length : parseInt($('run-count').value);
+  const selection = $('run-selection').value;
+  let selected;
+
+  if (selection === 'balanced') {
+    // Pick proportionally from each tag
+    const byTag = {};
+    loadedRequests.forEach(r => {
+      const tags = r.scenario_tags || ['untagged'];
+      tags.forEach(t => { if (!byTag[t]) byTag[t] = []; byTag[t].push(r); });
+    });
+    const tagNames = Object.keys(byTag);
+    const perTag = Math.max(1, Math.floor(count / tagNames.length));
+    selected = [];
+    const seen = new Set();
+    for (const tag of tagNames) {
+      const shuffled = [...byTag[tag]].sort(() => Math.random() - 0.5);
+      for (const r of shuffled) {
+        const id = r.request_id || JSON.stringify(r).substring(0, 50);
+        if (!seen.has(id) && selected.length < count) {
+          seen.add(id);
+          selected.push(r);
+          if (selected.filter(s => (s.scenario_tags || []).includes(tag)).length >= perTag) break;
+        }
+      }
+    }
+    // Fill remainder randomly
+    const remaining = loadedRequests.filter(r => !seen.has(r.request_id || JSON.stringify(r).substring(0, 50)));
+    const shuffledRem = remaining.sort(() => Math.random() - 0.5);
+    while (selected.length < count && shuffledRem.length > 0) {
+      selected.push(shuffledRem.shift());
+    }
+  } else if (selection === 'adversarial') {
+    const priority = ['restricted', 'contradictory', 'missing_info', 'threshold', 'capacity', 'lead_time', 'multi_country'];
+    const scored = loadedRequests.map(r => {
+      const tags = r.scenario_tags || [];
+      const score = tags.reduce((s, t) => s + (priority.indexOf(t) >= 0 ? 10 - priority.indexOf(t) : 0), 0);
+      return { req: r, score };
+    });
+    scored.sort((a, b) => b.score - a.score);
+    selected = scored.slice(0, count).map(s => s.req);
+  } else if (selection === 'random') {
+    const shuffled = [...loadedRequests].sort(() => Math.random() - 0.5);
+    selected = shuffled.slice(0, count);
+  } else {
+    selected = loadedRequests.slice(0, count);
+  }
+  return selected;
+}
+
+// ── Run single request ─────────────────────────────────────────────
+async function runSingle() {
+  const text = $('single-text').value.trim();
+  if (!text) return;
+  log('\n--- Single request ---');
+  log('Submitting: ' + text.substring(0, 100) + (text.length > 100 ? '...' : ''));
+
+  const t0 = Date.now();
+  try {
+    const resp = await fetch(apiUrl() + '/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ request_text: text, requester_context: {} }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) {
+      log(`Error ${resp.status}: ${data.detail || JSON.stringify(data).substring(0, 200)}`, 'err');
+      return;
+    }
+    const ms = Date.now() - t0;
+    const result = parseApiResponse(data, 'SINGLE-' + Date.now(), text, [], ms);
+    results.push(result);
+
+    const cls = result.decision_type === 'approved' ? 'ok' : result.decision_type === 'escalated' ? 'esc' : 'err';
+    log(`Result: ${result.decision_type.toUpperCase()} | supplier: ${result.supplier || '—'} | confidence: ${result.confidence != null ? (result.confidence * 100).toFixed(0) + '%' : '—'} | AIS: ${result.ais_score || '—'} | ${ms}ms`, cls);
+    renderDashboard();
+  } catch (e) {
+    log('Error: ' + e.message, 'err');
+  }
+}
+
+// ── Parse API response into uniform result object ──────────────────
+function parseApiResponse(data, reqId, reqText, tags, latencyMs) {
+  // The API returns different shapes for completed vs clarification_needed vs awaiting_approval
+  const state = data.state || 'unknown';
+
+  if (state === 'clarification_needed') {
+    return {
+      request_id: reqId,
+      record_id: data.record_id,
+      request_text: reqText,
+      decision_type: 'clarification_needed',
+      supplier: null,
+      confidence: null,
+      cost: null,
+      ais_score: null,
+      latency_ms: latencyMs,
+      scenario_tags: tags,
+      escalation_reason: null,
+      questions: data.questions,
+      raw: data,
+    };
+  }
+
+  // completed or awaiting_approval
+  const decision = data.decision || {};
+  const recSupplier = decision.recommended_supplier;
+  const decisionType = state === 'awaiting_approval' ? 'escalated' : (decision.decision_type || 'unknown');
+
+  return {
+    request_id: reqId,
+    record_id: data.record_id,
+    request_text: reqText,
+    decision_type: decisionType,
+    supplier: recSupplier ? recSupplier.name : null,
+    confidence: decision.confidence,
+    cost: recSupplier ? recSupplier.total_cost_eur : null,
+    ais_score: data.ais ? data.ais.score : null,
+    ais_grade: data.ais ? data.ais.grade : null,
+    risk_score: data.risk_score ? data.risk_score.score : null,
+    latency_ms: latencyMs,
+    scenario_tags: tags,
+    escalation_reason: decision.escalation_reason,
+    rejection_reason: decision.rejection_reason,
+    confidence_label: decision.confidence_label,
+    uncertainty_signals: decision.uncertainty_signals,
+    pipeline_trace: data.pipeline_trace,
+    raw: data,
+  };
+}
+
+// ── Run batch ──────────────────────────────────────────────────────
+async function runBatch() {
+  if (running) return;
+  running = true;
+  stopRequested = false;
+  $('btn-run-batch').disabled = true;
+  $('progress-section').classList.remove('hidden');
+
+  const selected = selectRequests();
+  const total = selected.length;
+  const concurrency = parseInt($('concurrency').value) || 2;
+  let completed = 0;
+  const t0 = Date.now();
+
+  log(`\n=== Batch: ${total} requests, concurrency ${concurrency} ===`);
+
+  const queue = [...selected];
+  const workers = [];
+
+  for (let w = 0; w < concurrency; w++) {
+    workers.push((async () => {
+      while (queue.length > 0 && !stopRequested) {
+        const req = queue.shift();
+        if (!req) break;
+        const rawText = buildRawText(req);
+        const reqId = req.request_id || `REQ-${completed}`;
+        const tags = req.scenario_tags || [];
+
+        try {
+          const rt0 = Date.now();
+          const resp = await fetch(apiUrl() + '/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              request_text: rawText,
+              requester_context: {
+                country: req.country,
+                business_unit: req.business_unit,
+              },
+            }),
+            signal: AbortSignal.timeout(180000),
+          });
+          const data = await resp.json();
+          const ms = Date.now() - rt0;
+
+          if (!resp.ok) {
+            throw new Error(`HTTP ${resp.status}: ${data.detail || 'Unknown error'}`);
+          }
+
+          const result = parseApiResponse(data, reqId, rawText.substring(0, 150), tags, ms);
+          results.push(result);
+
+          const correct = isCorrect(result.decision_type, tags);
+          const icon = correct === null ? '' : correct ? ' ✓' : ' ✗';
+          const cls = result.decision_type === 'approved' ? 'ok'
+                    : result.decision_type === 'escalated' ? 'esc'
+                    : result.decision_type === 'clarification_needed' ? 'info'
+                    : 'err';
+          log(`  ${reqId}: ${result.decision_type.toUpperCase()} ${result.supplier || ''} (${(ms/1000).toFixed(1)}s)${icon}`, cls);
+        } catch (e) {
+          results.push({
+            request_id: reqId,
+            request_text: rawText.substring(0, 150),
+            decision_type: 'error',
+            supplier: null,
+            confidence: null,
+            cost: null,
+            ais_score: null,
+            latency_ms: null,
+            scenario_tags: tags,
+            error: e.message,
+          });
+          log(`  ${reqId}: ERROR ${e.message.substring(0, 80)}`, 'err');
+        }
+
+        completed++;
+        const pct = Math.round(completed / total * 100);
+        $('progress-fill').style.width = pct + '%';
+        $('progress-text').textContent = `${completed} / ${total}`;
+        const elapsed = (Date.now() - t0) / 1000;
+        const perReq = elapsed / completed;
+        const eta = Math.ceil((total - completed) * perReq);
+        $('progress-time').textContent = `${Math.round(elapsed)}s`;
+        $('progress-eta').textContent = completed < total ? `~${eta}s left (~${perReq.toFixed(1)}s/req)` : '';
+
+        if (completed % 3 === 0 || completed === total) renderDashboard();
+      }
+    })());
+  }
+
+  await Promise.all(workers);
+
+  const totalTime = ((Date.now() - t0) / 1000).toFixed(1);
+  log(`\nDone: ${completed} in ${totalTime}s (${(totalTime / completed).toFixed(1)}s avg)`, 'ok');
+  $('progress-eta').textContent = `Complete — ${totalTime}s`;
+
+  running = false;
+  $('btn-run-batch').disabled = false;
+  renderDashboard();
+}
+
+function stopBatch() {
+  stopRequested = true;
+  log('Stopping...', 'esc');
+}
+
+function clearResults() {
+  results = [];
+  $('results-section').classList.add('hidden');
+  log('Results cleared.');
+}
+
+// ── Dashboard ──────────────────────────────────────────────────────
+function renderDashboard() {
+  if (results.length === 0) return;
+  $('results-section').classList.remove('hidden');
+
+  const total = results.length;
+  const approved = results.filter(r => r.decision_type === 'approved').length;
+  const escalated = results.filter(r => r.decision_type === 'escalated').length;
+  const rejected = results.filter(r => r.decision_type === 'rejected').length;
+  const clarification = results.filter(r => r.decision_type === 'clarification_needed').length;
+  const errors = results.filter(r => r.decision_type === 'error').length;
+
+  // Correctness
+  const withTags = results.filter(r => r.scenario_tags && r.scenario_tags.length > 0);
+  let correct = 0;
+  withTags.forEach(r => { if (isCorrect(r.decision_type, r.scenario_tags)) correct++; });
+  const compliancePct = withTags.length > 0 ? (correct / withTags.length * 100).toFixed(1) : '—';
+
+  const errorPct = total > 0 ? (errors / total * 100).toFixed(1) : '0';
+  const avgLatency = results.filter(r => r.latency_ms).reduce((s, r) => s + r.latency_ms, 0) / (results.filter(r => r.latency_ms).length || 1);
+  const avgAIS = results.filter(r => r.ais_score).reduce((s, r) => s + r.ais_score, 0) / (results.filter(r => r.ais_score).length || 1);
+  const avgConf = results.filter(r => r.confidence != null).reduce((s, r) => s + r.confidence, 0) / (results.filter(r => r.confidence != null).length || 1);
+
+  $('metrics-row').innerHTML = `
+    <div class="metric ${parseFloat(compliancePct) >= 90 ? 'good' : parseFloat(compliancePct) >= 70 ? 'warn' : 'bad'}">
+      <div class="value">${compliancePct}${compliancePct !== '—' ? '%' : ''}</div><div class="label">Compliance</div>
+    </div>
+    <div class="metric"><div class="value">${total}</div><div class="label">Total</div></div>
+    <div class="metric good"><div class="value">${approved}</div><div class="label">Approved</div></div>
+    <div class="metric warn"><div class="value">${escalated}</div><div class="label">Escalated</div></div>
+    <div class="metric"><div class="value">${clarification}</div><div class="label">Clarification</div></div>
+    <div class="metric ${errors === 0 ? 'good' : 'bad'}"><div class="value">${errors}</div><div class="label">Errors</div></div>
+    <div class="metric"><div class="value">${Math.round(avgLatency / 1000)}s</div><div class="label">Avg latency</div></div>
+    <div class="metric"><div class="value">${avgAIS > 0 ? Math.round(avgAIS) : '—'}</div><div class="label">Avg AIS</div></div>
+  `;
+
+  renderDecisionChart(approved, escalated, rejected, clarification, errors);
+  renderScenarioBreakdown();
+  renderFailuresTable();
+  renderResultsTable();
+}
+
+function renderDecisionChart(approved, escalated, rejected, clarification, errors) {
+  const ctx = $('chart-decisions');
+  if (chartsRendered.decisions) chartsRendered.decisions.destroy();
+  chartsRendered.decisions = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Approved', 'Escalated', 'Rejected', 'Clarification', 'Error'],
+      datasets: [{ data: [approved, escalated, rejected, clarification, errors],
+        backgroundColor: ['#2d8a4e', '#d4a930', '#c0392b', '#3b82f6', '#999'] }]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }
+  });
+}
+
+function renderScenarioBreakdown() {
+  const tags = {};
+  results.forEach(r => {
+    (r.scenario_tags || []).forEach(tag => {
+      if (!tags[tag]) tags[tag] = { total: 0, approved: 0, escalated: 0, rejected: 0, clarification_needed: 0, error: 0, correct: 0 };
+      tags[tag].total++;
+      const dt = r.decision_type;
+      if (tags[tag][dt] !== undefined) tags[tag][dt]++;
+      if (isCorrect(r.decision_type, [tag])) tags[tag].correct++;
+    });
+  });
+
+  const tbody = $('scenario-table').querySelector('tbody');
+  tbody.innerHTML = '';
+  const sorted = Object.entries(tags).sort((a, b) => b[1].total - a[1].total);
+  sorted.forEach(([tag, s]) => {
+    const pct = s.total > 0 ? (s.correct / s.total * 100).toFixed(0) : '—';
+    const color = pct >= 90 ? '#2d8a4e' : pct >= 70 ? '#b8860b' : '#c0392b';
+    tbody.innerHTML += `<tr>
+      <td><strong>${tag}</strong><br><span style="font-size:11px;color:#888">expect: ${(EXPECTED[tag]?.correct || []).join('/')}</span></td>
+      <td>${s.total}</td><td>${s.approved}</td>
+      <td>${s.escalated}</td><td>${s.rejected}</td><td>${s.clarification_needed}</td><td>${s.error}</td>
+      <td style="color:${color};font-weight:600">${pct}%</td></tr>`;
+  });
+
+  // Chart
+  const ctx = $('chart-scenarios');
+  if (chartsRendered.scenarios) chartsRendered.scenarios.destroy();
+  const labels = sorted.slice(0, 10).map(([t]) => t);
+  const correctData = sorted.slice(0, 10).map(([, s]) => s.total > 0 ? (s.correct / s.total * 100) : 0);
+  chartsRendered.scenarios = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ label: 'Correct %', data: correctData, backgroundColor: correctData.map(v => v >= 90 ? '#2d8a4e' : v >= 70 ? '#d4a930' : '#c0392b') }]
+    },
+    options: { responsive: true, indexAxis: 'y', scales: { x: { max: 100 } }, plugins: { legend: { display: false } } }
+  });
+}
+
+function renderFailuresTable() {
+  const failures = results.filter(r => {
+    const correct = isCorrect(r.decision_type, r.scenario_tags);
+    return correct === false;
+  });
+  $('failures-count').textContent = `(${failures.length})`;
+  const tbody = $('failures-table').querySelector('tbody');
+  tbody.innerHTML = '';
+  if (failures.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="color:#888;text-align:center">No incorrect decisions</td></tr>';
+    return;
+  }
+  failures.forEach(r => {
+    const tags = (r.scenario_tags || []).map(t => `<span class="tag inline-tag">${t}</span>`).join('');
+    const got = `<span class="tag tag-${r.decision_type}">${(r.decision_type || '?').toUpperCase()}</span>`;
+    const exp = expectedStr(r.scenario_tags);
+    tbody.innerHTML += `<tr>
+      <td>${r.request_id || '—'}</td>
+      <td>${tags}</td>
+      <td>${got}</td>
+      <td>${exp}</td>
+      <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${(r.request_text || '').replace(/"/g, '&quot;')}">${r.request_text || '—'}</td>
+    </tr>`;
+  });
+}
+
+function renderResultsTable() {
+  const filter = $('filter-text').value.toLowerCase();
+  const filtered = results.filter(r => {
+    if (!filter) return true;
+    return (r.request_id || '').toLowerCase().includes(filter)
+      || (r.request_text || '').toLowerCase().includes(filter)
+      || (r.supplier || '').toLowerCase().includes(filter)
+      || (r.decision_type || '').toLowerCase().includes(filter)
+      || (r.scenario_tags || []).some(t => t.toLowerCase().includes(filter));
+  });
+  $('results-count').textContent = `(${filtered.length}/${results.length})`;
+  const tbody = $('results-table').querySelector('tbody');
+  tbody.innerHTML = '';
+  filtered.forEach((r, i) => {
+    const tagCls = `tag-${r.decision_type}`;
+    const tags = (r.scenario_tags || []).map(t => `<span class="tag inline-tag">${t}</span>`).join(' ');
+    const correct = isCorrect(r.decision_type, r.scenario_tags);
+    const icon = correct === null ? '' : correct ? '✓' : '✗';
+    const iconColor = correct === null ? '' : correct ? 'color:#2d8a4e' : 'color:#c0392b;font-weight:600';
+    tbody.innerHTML += `<tr class="expandable" onclick="toggleDetail(this, ${i})">
+      <td>${r.request_id || '—'} <span style="${iconColor}">${icon}</span></td>
+      <td><span class="tag ${tagCls}">${(r.decision_type || '?').toUpperCase()}</span></td>
+      <td>${r.supplier || '—'}</td>
+      <td>${r.confidence != null ? (r.confidence * 100).toFixed(0) + '%' : '—'}</td>
+      <td>${r.cost != null ? '€' + Math.round(r.cost).toLocaleString() : '—'}</td>
+      <td>${r.ais_score || '—'}</td>
+      <td>${r.latency_ms ? (r.latency_ms / 1000).toFixed(1) + 's' : '—'}</td>
+      <td>${tags}</td>
+    </tr>`;
+  });
+}
+
+function toggleDetail(row, idx) {
+  const next = row.nextElementSibling;
+  if (next && next.classList.contains('detail-row')) { next.remove(); return; }
+  const r = results[idx];
+  const detail = document.createElement('tr');
+  detail.classList.add('detail-row');
+
+  const signals = (r.uncertainty_signals || []).map(s => `• ${s.label || s.detail || '?'} (severity: ${s.severity || '?'})`).join('<br>');
+  const trace = (r.pipeline_trace || []).map(s => `${s.step}: ${s.ms}ms ${s.llm ? '(LLM)' : ''} — ${s.summary}`).join('<br>');
+
+  detail.innerHTML = `<td colspan="8">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <strong>Request:</strong> ${r.request_text || '—'}<br>
+        <strong>Escalation:</strong> ${r.escalation_reason || '—'}<br>
+        <strong>Rejection:</strong> ${r.rejection_reason || '—'}<br>
+        <strong>Confidence:</strong> ${r.confidence != null ? (r.confidence * 100).toFixed(1) + '% (' + (r.confidence_label || '?') + ')' : '—'}<br>
+        <strong>AIS:</strong> ${r.ais_score || '—'} (${r.ais_grade || '?'})<br>
+        <strong>Risk:</strong> ${r.risk_score || '—'}<br>
+        ${r.questions ? '<strong>Questions:</strong><br>' + r.questions.map(q => '• ' + q).join('<br>') : ''}
+        ${signals ? '<br><strong>Uncertainty signals:</strong><br>' + signals : ''}
+      </div>
+      <div>
+        ${trace ? '<strong>Pipeline trace:</strong><br><span style="font-size:11px">' + trace + '</span>' : ''}
+        ${r.error ? '<br><strong>Error:</strong> ' + r.error : ''}
+      </div>
+    </div>
+    <details style="margin-top:8px"><summary style="cursor:pointer;font-size:12px">Full API response</summary>
+    <pre style="font-size:11px;max-height:300px;overflow:auto">${JSON.stringify(r.raw || {}, null, 2).substring(0, 5000)}</pre></details>
+  </td>`;
+  row.after(detail);
+}
+
+// ── Save / Load ────────────────────────────────────────────────────
+function saveResults() {
+  const data = {
+    timestamp: new Date().toISOString(),
+    api_url: apiUrl(),
+    total: results.length,
+    config: { concurrency: parseInt($('concurrency').value) },
+    results: results.map(r => ({ ...r, raw: undefined })),
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `eval_${new Date().toISOString().replace(/[:.]/g, '-').substring(0, 19)}.json`;
+  a.click();
+}
+
+function downloadCSV() {
+  const headers = ['request_id', 'decision_type', 'supplier', 'confidence', 'cost', 'ais_score', 'latency_ms', 'scenario_tags', 'escalation_reason', 'correct'];
+  const rows = results.map(r => headers.map(h => {
+    if (h === 'correct') return isCorrect(r.decision_type, r.scenario_tags) ?? '';
+    const v = r[h];
+    if (Array.isArray(v)) return '"' + v.join(';') + '"';
+    if (typeof v === 'string' && v.includes(',')) return '"' + v + '"';
+    return v ?? '';
+  }).join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `eval_${new Date().toISOString().replace(/[:.]/g, '-').substring(0, 19)}.csv`;
+  a.click();
+}
+
+function loadPastResults(file) {
+  if (!file) return;
+  file.text().then(text => {
+    const data = JSON.parse(text);
+    results = data.results || data;
+    log(`Loaded ${results.length} past results`);
+    renderDashboard();
+  });
+}
+</script>
+</body>
+</html>

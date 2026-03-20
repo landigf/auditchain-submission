@@ -1,0 +1,2 @@
+FROM starthackacr.azurecr.io/metaflow-ui:latest
+COPY metaflow-ui-azure-nginx.conf /etc/nginx/conf.d/default.conf

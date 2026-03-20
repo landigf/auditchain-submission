@@ -1,0 +1,4045 @@
+{
+  "total_requests": 304,
+  "total_time_s": 6202.7,
+  "avg_latency_s": 19.4,
+  "avg_ais": 96.4,
+  "avg_risk": 42.6,
+  "errors": 3,
+  "by_scenario": {
+    "capacity": {
+      "count": 18,
+      "approved": 0,
+      "escalated": 18,
+      "rejected": 0,
+      "clarified": 3,
+      "errors": 0
+    },
+    "contradictory": {
+      "count": 21,
+      "approved": 1,
+      "escalated": 18,
+      "rejected": 0,
+      "clarified": 1,
+      "errors": 2
+    },
+    "lead_time": {
+      "count": 29,
+      "approved": 1,
+      "escalated": 28,
+      "rejected": 0,
+      "clarified": 1,
+      "errors": 0
+    },
+    "missing_info": {
+      "count": 28,
+      "approved": 1,
+      "escalated": 14,
+      "rejected": 0,
+      "clarified": 13,
+      "errors": 0
+    },
+    "multi_country": {
+      "count": 3,
+      "approved": 0,
+      "escalated": 3,
+      "rejected": 0,
+      "clarified": 1,
+      "errors": 0
+    },
+    "multilingual": {
+      "count": 18,
+      "approved": 1,
+      "escalated": 17,
+      "rejected": 0,
+      "clarified": 1,
+      "errors": 0
+    },
+    "restricted": {
+      "count": 18,
+      "approved": 0,
+      "escalated": 17,
+      "rejected": 1,
+      "clarified": 2,
+      "errors": 0
+    },
+    "standard": {
+      "count": 141,
+      "approved": 1,
+      "escalated": 139,
+      "rejected": 0,
+      "clarified": 4,
+      "errors": 1
+    },
+    "threshold": {
+      "count": 29,
+      "approved": 0,
+      "escalated": 29,
+      "rejected": 0,
+      "clarified": 0,
+      "errors": 0
+    }
+  },
+  "by_decision": {
+    "escalated": 282,
+    "approved": 5,
+    "rejected": 1
+  },
+  "results": [
+    {
+      "request_id": "REQ-000001",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.28
+    },
+    {
+      "request_id": "REQ-000002",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 5,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 19.95
+    },
+    {
+      "request_id": "REQ-000003",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 19.86
+    },
+    {
+      "request_id": "REQ-000004",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "error",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.68,
+      "error": "sequence item 0: expected str instance, NoneType found"
+    },
+    {
+      "request_id": "REQ-000005",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 30,
+      "confidence": 0.95,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 18.02
+    },
+    {
+      "request_id": "REQ-000006",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 20.41
+    },
+    {
+      "request_id": "REQ-000007",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 7,
+      "confidence": 0.07,
+      "supplier_name": null,
+      "elapsed_s": 18.66
+    },
+    {
+      "request_id": "REQ-000008",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 37,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 19.56
+    },
+    {
+      "request_id": "REQ-000009",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 24,
+      "confidence": 0.34,
+      "supplier_name": null,
+      "elapsed_s": 19.71
+    },
+    {
+      "request_id": "REQ-000010",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 31,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 19.95
+    },
+    {
+      "request_id": "REQ-000011",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "completed",
+      "decision_type": "approved",
+      "ais_score": 100,
+      "risk_score": 7,
+      "confidence": 0.95,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 19.49
+    },
+    {
+      "request_id": "REQ-000012",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.04
+    },
+    {
+      "request_id": "REQ-000013",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 42,
+      "confidence": 0.11,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 19.19
+    },
+    {
+      "request_id": "REQ-000014",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 15,
+      "confidence": 0.06,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.91
+    },
+    {
+      "request_id": "REQ-000015",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 87,
+      "confidence": 0.15,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 21.32
+    },
+    {
+      "request_id": "REQ-000016",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 58,
+      "confidence": 0.19,
+      "supplier_name": null,
+      "elapsed_s": 18.44
+    },
+    {
+      "request_id": "REQ-000017",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 67,
+      "confidence": 0.19,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 19.92
+    },
+    {
+      "request_id": "REQ-000018",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.18,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.95
+    },
+    {
+      "request_id": "REQ-000019",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 14,
+      "confidence": 0.27,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 21.31
+    },
+    {
+      "request_id": "REQ-000020",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 12,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 17.33
+    },
+    {
+      "request_id": "REQ-000021",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 34,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.13
+    },
+    {
+      "request_id": "REQ-000022",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "error",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.38,
+      "error": "sequence item 0: expected str instance, NoneType found"
+    },
+    {
+      "request_id": "REQ-000023",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 15,
+      "confidence": 0.41,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 20.26
+    },
+    {
+      "request_id": "REQ-000024",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 82,
+      "confidence": 0.35,
+      "supplier_name": null,
+      "elapsed_s": 18.81
+    },
+    {
+      "request_id": "REQ-000025",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 19.86
+    },
+    {
+      "request_id": "REQ-000026",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 5,
+      "confidence": 0.82,
+      "supplier_name": null,
+      "elapsed_s": 19.84
+    },
+    {
+      "request_id": "REQ-000027",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 61,
+      "confidence": 0.15,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 21.32
+    },
+    {
+      "request_id": "REQ-000028",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 62,
+      "confidence": 0.21,
+      "supplier_name": null,
+      "elapsed_s": 20.35
+    },
+    {
+      "request_id": "REQ-000029",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 100,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 20.24
+    },
+    {
+      "request_id": "REQ-000030",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 80,
+      "confidence": 0.34,
+      "supplier_name": null,
+      "elapsed_s": 19.06
+    },
+    {
+      "request_id": "REQ-000031",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 4,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 17.66
+    },
+    {
+      "request_id": "REQ-000032",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 55,
+      "confidence": 0.22,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.9
+    },
+    {
+      "request_id": "REQ-000033",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 23,
+      "confidence": 0.07,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 19.58
+    },
+    {
+      "request_id": "REQ-000034",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 18.54
+    },
+    {
+      "request_id": "REQ-000035",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 31,
+      "confidence": 0.7,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 18.65
+    },
+    {
+      "request_id": "REQ-000036",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 19.28
+    },
+    {
+      "request_id": "REQ-000037",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 79,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 22.02
+    },
+    {
+      "request_id": "REQ-000038",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 57,
+      "confidence": 0.13,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 17.64
+    },
+    {
+      "request_id": "REQ-000039",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.61
+    },
+    {
+      "request_id": "REQ-000040",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 35,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.74
+    },
+    {
+      "request_id": "REQ-000041",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 100,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 22.29
+    },
+    {
+      "request_id": "REQ-000042",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 10,
+      "confidence": 0.07,
+      "supplier_name": null,
+      "elapsed_s": 19.39
+    },
+    {
+      "request_id": "REQ-000043",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 19.71
+    },
+    {
+      "request_id": "REQ-000044",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 22.51
+    },
+    {
+      "request_id": "REQ-000045",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 8,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 21.01
+    },
+    {
+      "request_id": "REQ-000046",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 23,
+      "confidence": 0.95,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 20.09
+    },
+    {
+      "request_id": "REQ-000047",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.95,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 19.99
+    },
+    {
+      "request_id": "REQ-000048",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 9,
+      "confidence": 0.95,
+      "supplier_name": null,
+      "elapsed_s": 20.45
+    },
+    {
+      "request_id": "REQ-000049",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 49,
+      "confidence": 0.65,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 21.99
+    },
+    {
+      "request_id": "REQ-000050",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 97,
+      "confidence": 0.15,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 19.87
+    },
+    {
+      "request_id": "REQ-000051",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 25,
+      "confidence": 0.7,
+      "supplier_name": null,
+      "elapsed_s": 19.18
+    },
+    {
+      "request_id": "REQ-000052",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "completed",
+      "decision_type": "approved",
+      "ais_score": 97,
+      "risk_score": 69,
+      "confidence": 0.45,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 21.38
+    },
+    {
+      "request_id": "REQ-000053",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 93,
+      "confidence": 0.62,
+      "supplier_name": null,
+      "elapsed_s": 22.59
+    },
+    {
+      "request_id": "REQ-000054",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 56,
+      "confidence": 0.37,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 22.3
+    },
+    {
+      "request_id": "REQ-000055",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 67,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 19.4
+    },
+    {
+      "request_id": "REQ-000056",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 4,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 17.73
+    },
+    {
+      "request_id": "REQ-000057",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 48,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 22.03
+    },
+    {
+      "request_id": "REQ-000058",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 92,
+      "confidence": 0.21,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 21.32
+    },
+    {
+      "request_id": "REQ-000059",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 17.83
+    },
+    {
+      "request_id": "REQ-000060",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 11,
+      "confidence": 0.13,
+      "supplier_name": null,
+      "elapsed_s": 18.35
+    },
+    {
+      "request_id": "REQ-000061",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.45,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 22.96
+    },
+    {
+      "request_id": "REQ-000062",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 2,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 20.36
+    },
+    {
+      "request_id": "REQ-000063",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 76,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 20.11
+    },
+    {
+      "request_id": "REQ-000064",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 23,
+      "confidence": 0.95,
+      "supplier_name": null,
+      "elapsed_s": 19.27
+    },
+    {
+      "request_id": "REQ-000065",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 46,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.61
+    },
+    {
+      "request_id": "REQ-000066",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 98,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.89
+    },
+    {
+      "request_id": "REQ-000067",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 64,
+      "confidence": 0.34,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 21.88
+    },
+    {
+      "request_id": "REQ-000068",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 36,
+      "confidence": 0.15,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 19.23
+    },
+    {
+      "request_id": "REQ-000069",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 49,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 18.58
+    },
+    {
+      "request_id": "REQ-000070",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 60,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.49
+    },
+    {
+      "request_id": "REQ-000071",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 54,
+      "confidence": 0.15,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 21.29
+    },
+    {
+      "request_id": "REQ-000072",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 84,
+      "confidence": 0.17,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.1
+    },
+    {
+      "request_id": "REQ-000073",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 76,
+      "confidence": 0.17,
+      "supplier_name": null,
+      "elapsed_s": 18.86
+    },
+    {
+      "request_id": "REQ-000074",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 44,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.74
+    },
+    {
+      "request_id": "REQ-000075",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 63,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.24
+    },
+    {
+      "request_id": "REQ-000076",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 82,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 18.6
+    },
+    {
+      "request_id": "REQ-000077",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 17.46
+    },
+    {
+      "request_id": "REQ-000078",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.28,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 21.31
+    },
+    {
+      "request_id": "REQ-000079",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 70,
+      "confidence": 0.3,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 21.55
+    },
+    {
+      "request_id": "REQ-000080",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 79,
+      "confidence": 0.21,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 20.13
+    },
+    {
+      "request_id": "REQ-000081",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 25,
+      "confidence": 0.29,
+      "supplier_name": "Capgemini Consulting",
+      "elapsed_s": 17.83
+    },
+    {
+      "request_id": "REQ-000082",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 8.91
+    },
+    {
+      "request_id": "REQ-000083",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 84,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 20.32
+    },
+    {
+      "request_id": "REQ-000084",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 43,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.05
+    },
+    {
+      "request_id": "REQ-000085",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 84,
+      "confidence": 0.17,
+      "supplier_name": null,
+      "elapsed_s": 18.41
+    },
+    {
+      "request_id": "REQ-000086",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.26,
+      "supplier_name": null,
+      "elapsed_s": 21.35
+    },
+    {
+      "request_id": "REQ-000087",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.51,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 19.48
+    },
+    {
+      "request_id": "REQ-000088",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 93,
+      "confidence": 0.36,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 24.18
+    },
+    {
+      "request_id": "REQ-000089",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 21.41
+    },
+    {
+      "request_id": "REQ-000090",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 49,
+      "confidence": 0.65,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 18.55
+    },
+    {
+      "request_id": "REQ-000091",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 54,
+      "confidence": 0.2,
+      "supplier_name": null,
+      "elapsed_s": 22.44
+    },
+    {
+      "request_id": "REQ-000092",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 15,
+      "confidence": 0.13,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.53
+    },
+    {
+      "request_id": "REQ-000093",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 14,
+      "confidence": 0.22,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 18.65
+    },
+    {
+      "request_id": "REQ-000094",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 77,
+      "confidence": 0.65,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 20.7
+    },
+    {
+      "request_id": "REQ-000095",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.14
+    },
+    {
+      "request_id": "REQ-000096",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.44
+    },
+    {
+      "request_id": "REQ-000097",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 3,
+      "confidence": 0.11,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 20.29
+    },
+    {
+      "request_id": "REQ-000098",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.96
+    },
+    {
+      "request_id": "REQ-000099",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 7.4
+    },
+    {
+      "request_id": "REQ-000100",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 27,
+      "confidence": 0.37,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 20.96
+    },
+    {
+      "request_id": "REQ-000101",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 56,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 24.55
+    },
+    {
+      "request_id": "REQ-000102",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 3,
+      "confidence": 0.17,
+      "supplier_name": null,
+      "elapsed_s": 19.68
+    },
+    {
+      "request_id": "REQ-000103",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 52,
+      "confidence": 0.17,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 22.34
+    },
+    {
+      "request_id": "REQ-000104",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 33,
+      "confidence": 0.15,
+      "supplier_name": null,
+      "elapsed_s": 18.96
+    },
+    {
+      "request_id": "REQ-000105",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 100,
+      "confidence": 0.2,
+      "supplier_name": null,
+      "elapsed_s": 19.29
+    },
+    {
+      "request_id": "REQ-000106",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 2,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 19.18
+    },
+    {
+      "request_id": "REQ-000107",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 28,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.72
+    },
+    {
+      "request_id": "REQ-000108",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.83,
+      "supplier_name": null,
+      "elapsed_s": 20.5
+    },
+    {
+      "request_id": "REQ-000109",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 10,
+      "confidence": 0.38,
+      "supplier_name": null,
+      "elapsed_s": 17.96
+    },
+    {
+      "request_id": "REQ-000110",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 53,
+      "confidence": 0.2,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 23.55
+    },
+    {
+      "request_id": "REQ-000111",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 28,
+      "confidence": 0.19,
+      "supplier_name": null,
+      "elapsed_s": 17.21
+    },
+    {
+      "request_id": "REQ-000112",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 65,
+      "confidence": 0.22,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 18.99
+    },
+    {
+      "request_id": "REQ-000113",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.08
+    },
+    {
+      "request_id": "REQ-000114",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 20.76
+    },
+    {
+      "request_id": "REQ-000115",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 81,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.33
+    },
+    {
+      "request_id": "REQ-000116",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 22.73
+    },
+    {
+      "request_id": "REQ-000117",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 24,
+      "confidence": 0.37,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.37
+    },
+    {
+      "request_id": "REQ-000118",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 73,
+      "confidence": 0.08,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.51
+    },
+    {
+      "request_id": "REQ-000119",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 35,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.31
+    },
+    {
+      "request_id": "REQ-000120",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 79,
+      "confidence": 0.45,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 18.7
+    },
+    {
+      "request_id": "REQ-000121",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 94,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 17.44
+    },
+    {
+      "request_id": "REQ-000122",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.67
+    },
+    {
+      "request_id": "REQ-000123",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 45,
+      "confidence": 0.11,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 18.91
+    },
+    {
+      "request_id": "REQ-000124",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 74,
+      "confidence": 0.27,
+      "supplier_name": null,
+      "elapsed_s": 18.04
+    },
+    {
+      "request_id": "REQ-000125",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.15
+    },
+    {
+      "request_id": "REQ-000126",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 88,
+      "risk_score": 4,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 20.04
+    },
+    {
+      "request_id": "REQ-000127",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 17,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 20.65
+    },
+    {
+      "request_id": "REQ-000128",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.62,
+      "supplier_name": "HP Enterprise Devices",
+      "elapsed_s": 17.95
+    },
+    {
+      "request_id": "REQ-000129",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 34,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 19.05
+    },
+    {
+      "request_id": "REQ-000130",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 23,
+      "confidence": 0.62,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 23.05
+    },
+    {
+      "request_id": "REQ-000131",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 46,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 23.02
+    },
+    {
+      "request_id": "REQ-000132",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 80,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.31
+    },
+    {
+      "request_id": "REQ-000133",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 92,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 18.76
+    },
+    {
+      "request_id": "REQ-000134",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 99,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.22
+    },
+    {
+      "request_id": "REQ-000135",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.83
+    },
+    {
+      "request_id": "REQ-000136",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 68,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 18.57
+    },
+    {
+      "request_id": "REQ-000137",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 100,
+      "confidence": 0.15,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 20.39
+    },
+    {
+      "request_id": "REQ-000138",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "error",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.24,
+      "error": "sequence item 0: expected str instance, NoneType found"
+    },
+    {
+      "request_id": "REQ-000139",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 65,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 20.81
+    },
+    {
+      "request_id": "REQ-000140",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 26.11
+    },
+    {
+      "request_id": "REQ-000141",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.47
+    },
+    {
+      "request_id": "REQ-000142",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 92,
+      "confidence": 0.62,
+      "supplier_name": null,
+      "elapsed_s": 19.78
+    },
+    {
+      "request_id": "REQ-000143",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 30,
+      "confidence": 0.83,
+      "supplier_name": null,
+      "elapsed_s": 17.56
+    },
+    {
+      "request_id": "REQ-000144",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 17.64
+    },
+    {
+      "request_id": "REQ-000145",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 54,
+      "confidence": 0.05,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 20.01
+    },
+    {
+      "request_id": "REQ-000146",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 33,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 18.17
+    },
+    {
+      "request_id": "REQ-000147",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 38,
+      "confidence": 0.38,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 18.96
+    },
+    {
+      "request_id": "REQ-000148",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 9,
+      "confidence": 0.95,
+      "supplier_name": null,
+      "elapsed_s": 20.39
+    },
+    {
+      "request_id": "REQ-000149",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 17.62
+    },
+    {
+      "request_id": "REQ-000150",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 20.19
+    },
+    {
+      "request_id": "REQ-000151",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 31,
+      "confidence": 0.95,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 21.12
+    },
+    {
+      "request_id": "REQ-000152",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.7,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 17.41
+    },
+    {
+      "request_id": "REQ-000153",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 47,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 21.7
+    },
+    {
+      "request_id": "REQ-000154",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 71,
+      "confidence": 0.41,
+      "supplier_name": null,
+      "elapsed_s": 22.02
+    },
+    {
+      "request_id": "REQ-000155",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 22,
+      "confidence": 0.3,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 21.97
+    },
+    {
+      "request_id": "REQ-000156",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 56,
+      "confidence": 0.27,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 21.71
+    },
+    {
+      "request_id": "REQ-000157",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 57,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 20.84
+    },
+    {
+      "request_id": "REQ-000158",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 9,
+      "confidence": 0.95,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 20.57
+    },
+    {
+      "request_id": "REQ-000159",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 48,
+      "confidence": 0.29,
+      "supplier_name": null,
+      "elapsed_s": 18.26
+    },
+    {
+      "request_id": "REQ-000160",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 34,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.19
+    },
+    {
+      "request_id": "REQ-000161",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 42,
+      "confidence": 0.64,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 21.79
+    },
+    {
+      "request_id": "REQ-000162",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 23,
+      "confidence": 0.05,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 20.81
+    },
+    {
+      "request_id": "REQ-000163",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 18.75
+    },
+    {
+      "request_id": "REQ-000164",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.26
+    },
+    {
+      "request_id": "REQ-000165",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.95,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 18.47
+    },
+    {
+      "request_id": "REQ-000166",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 44,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.71
+    },
+    {
+      "request_id": "REQ-000167",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 47,
+      "confidence": 0.95,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 17.57
+    },
+    {
+      "request_id": "REQ-000168",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 39,
+      "confidence": 0.29,
+      "supplier_name": null,
+      "elapsed_s": 20.35
+    },
+    {
+      "request_id": "REQ-000169",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 85,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.46
+    },
+    {
+      "request_id": "REQ-000170",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 3,
+      "confidence": 0.1,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 19.39
+    },
+    {
+      "request_id": "REQ-000171",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.95,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 18.33
+    },
+    {
+      "request_id": "REQ-000172",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 20.8
+    },
+    {
+      "request_id": "REQ-000173",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 26,
+      "confidence": 0.07,
+      "supplier_name": null,
+      "elapsed_s": 16.6
+    },
+    {
+      "request_id": "REQ-000174",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 2,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 18.13
+    },
+    {
+      "request_id": "REQ-000175",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 19,
+      "confidence": 0.1,
+      "supplier_name": null,
+      "elapsed_s": 20.91
+    },
+    {
+      "request_id": "REQ-000176",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 63,
+      "confidence": 0.35,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 20.8
+    },
+    {
+      "request_id": "REQ-000177",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 19.48
+    },
+    {
+      "request_id": "REQ-000178",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.62,
+      "supplier_name": null,
+      "elapsed_s": 18.47
+    },
+    {
+      "request_id": "REQ-000179",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 75,
+      "confidence": 0.22,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 21.6
+    },
+    {
+      "request_id": "REQ-000180",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 59,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 21.6
+    },
+    {
+      "request_id": "REQ-000181",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 59,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.1
+    },
+    {
+      "request_id": "REQ-000182",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 12,
+      "confidence": 0.38,
+      "supplier_name": null,
+      "elapsed_s": 18.96
+    },
+    {
+      "request_id": "REQ-000183",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "completed",
+      "decision_type": "approved",
+      "ais_score": 97,
+      "risk_score": 85,
+      "confidence": 0.45,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 22.74
+    },
+    {
+      "request_id": "REQ-000184",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 70,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 19.03
+    },
+    {
+      "request_id": "REQ-000185",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 20.73
+    },
+    {
+      "request_id": "REQ-000186",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 39,
+      "confidence": 0.17,
+      "supplier_name": null,
+      "elapsed_s": 19.07
+    },
+    {
+      "request_id": "REQ-000187",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 58,
+      "confidence": 0.56,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 19.01
+    },
+    {
+      "request_id": "REQ-000188",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 42,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 22.27
+    },
+    {
+      "request_id": "REQ-000189",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 52,
+      "confidence": 0.36,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 20.21
+    },
+    {
+      "request_id": "REQ-000190",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 50,
+      "confidence": 0.19,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 20.36
+    },
+    {
+      "request_id": "REQ-000191",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 10,
+      "confidence": 0.3,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 19.43
+    },
+    {
+      "request_id": "REQ-000192",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 11,
+      "confidence": 0.65,
+      "supplier_name": null,
+      "elapsed_s": 20.26
+    },
+    {
+      "request_id": "REQ-000193",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 7,
+      "confidence": 0.59,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 19.68
+    },
+    {
+      "request_id": "REQ-000194",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 10,
+      "confidence": 0.07,
+      "supplier_name": "Google Cloud Europe",
+      "elapsed_s": 19.69
+    },
+    {
+      "request_id": "REQ-000195",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 18.35
+    },
+    {
+      "request_id": "REQ-000196",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 79,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 21.44
+    },
+    {
+      "request_id": "REQ-000197",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 13,
+      "confidence": 0.1,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 19.02
+    },
+    {
+      "request_id": "REQ-000198",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 34,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 19.77
+    },
+    {
+      "request_id": "REQ-000199",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 7,
+      "confidence": 0.11,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 19.05
+    },
+    {
+      "request_id": "REQ-000200",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 100,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 24.18
+    },
+    {
+      "request_id": "REQ-000201",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 74,
+      "confidence": 0.5,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 20.4
+    },
+    {
+      "request_id": "REQ-000202",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 100,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 20.46
+    },
+    {
+      "request_id": "REQ-000203",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 18,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 20.13
+    },
+    {
+      "request_id": "REQ-000204",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 6.56
+    },
+    {
+      "request_id": "REQ-000205",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 8,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 18.89
+    },
+    {
+      "request_id": "REQ-000206",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 9,
+      "confidence": 0.95,
+      "supplier_name": null,
+      "elapsed_s": 17.3
+    },
+    {
+      "request_id": "REQ-000207",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.65,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 18.85
+    },
+    {
+      "request_id": "REQ-000208",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 19.48
+    },
+    {
+      "request_id": "REQ-000209",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "completed",
+      "decision_type": "approved",
+      "ais_score": 94,
+      "risk_score": 83,
+      "confidence": 0.45,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 22.23
+    },
+    {
+      "request_id": "REQ-000210",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 60,
+      "confidence": 0.19,
+      "supplier_name": "HP Enterprise Devices",
+      "elapsed_s": 20.7
+    },
+    {
+      "request_id": "REQ-000211",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.21,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 21.73
+    },
+    {
+      "request_id": "REQ-000212",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 66,
+      "confidence": 0.22,
+      "supplier_name": null,
+      "elapsed_s": 18.03
+    },
+    {
+      "request_id": "REQ-000213",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 9,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 17.94
+    },
+    {
+      "request_id": "REQ-000214",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 77,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 21.11
+    },
+    {
+      "request_id": "REQ-000215",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 95,
+      "confidence": 0.2,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 21.01
+    },
+    {
+      "request_id": "REQ-000216",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 56,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 20.38
+    },
+    {
+      "request_id": "REQ-000217",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 10,
+      "confidence": 0.3,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 19.37
+    },
+    {
+      "request_id": "REQ-000218",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 3,
+      "confidence": 0.11,
+      "supplier_name": null,
+      "elapsed_s": 15.6
+    },
+    {
+      "request_id": "REQ-000219",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 7,
+      "confidence": 0.21,
+      "supplier_name": null,
+      "elapsed_s": 17.11
+    },
+    {
+      "request_id": "REQ-000220",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 25,
+      "confidence": 0.07,
+      "supplier_name": null,
+      "elapsed_s": 24.9
+    },
+    {
+      "request_id": "REQ-000221",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 83,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 22.14
+    },
+    {
+      "request_id": "REQ-000222",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 46,
+      "confidence": 0.16,
+      "supplier_name": null,
+      "elapsed_s": 30.73
+    },
+    {
+      "request_id": "REQ-000223",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 48,
+      "confidence": 0.2,
+      "supplier_name": null,
+      "elapsed_s": 22.3
+    },
+    {
+      "request_id": "REQ-000224",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 62,
+      "confidence": 0.35,
+      "supplier_name": null,
+      "elapsed_s": 20.65
+    },
+    {
+      "request_id": "REQ-000225",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 62,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 17.82
+    },
+    {
+      "request_id": "REQ-000226",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 5,
+      "confidence": 0.2,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 20.72
+    },
+    {
+      "request_id": "REQ-000227",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 12,
+      "confidence": 0.19,
+      "supplier_name": "HP Enterprise Devices",
+      "elapsed_s": 18.33
+    },
+    {
+      "request_id": "REQ-000228",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "completed",
+      "decision_type": "rejected",
+      "ais_score": 97,
+      "risk_score": 52,
+      "confidence": 0.13,
+      "supplier_name": null,
+      "elapsed_s": 19.86
+    },
+    {
+      "request_id": "REQ-000229",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 13,
+      "confidence": 0.6,
+      "supplier_name": null,
+      "elapsed_s": 21.75
+    },
+    {
+      "request_id": "REQ-000230",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 44,
+      "confidence": 0.56,
+      "supplier_name": null,
+      "elapsed_s": 17.52
+    },
+    {
+      "request_id": "REQ-000231",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 5,
+      "confidence": 0.07,
+      "supplier_name": null,
+      "elapsed_s": 20.11
+    },
+    {
+      "request_id": "REQ-000232",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "completed",
+      "decision_type": "approved",
+      "ais_score": 91,
+      "risk_score": 6,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 23.37
+    },
+    {
+      "request_id": "REQ-000233",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 100,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 21.71
+    },
+    {
+      "request_id": "REQ-000234",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.51,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 18.55
+    },
+    {
+      "request_id": "REQ-000235",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 34,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 18.66
+    },
+    {
+      "request_id": "REQ-000236",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 74,
+      "confidence": 0.15,
+      "supplier_name": "Dell Enterprise Europe",
+      "elapsed_s": 19.78
+    },
+    {
+      "request_id": "REQ-000237",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 19,
+      "confidence": 0.09,
+      "supplier_name": null,
+      "elapsed_s": 17.72
+    },
+    {
+      "request_id": "REQ-000238",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 91,
+      "confidence": 0.3,
+      "supplier_name": null,
+      "elapsed_s": 19.17
+    },
+    {
+      "request_id": "REQ-000239",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 56,
+      "confidence": 0.05,
+      "supplier_name": "Insight Technology Group",
+      "elapsed_s": 18.65
+    },
+    {
+      "request_id": "REQ-000240",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 3,
+      "confidence": 0.18,
+      "supplier_name": null,
+      "elapsed_s": 19.72
+    },
+    {
+      "request_id": "REQ-000241",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 4,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 16.87
+    },
+    {
+      "request_id": "REQ-000242",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 56,
+      "confidence": 0.22,
+      "supplier_name": null,
+      "elapsed_s": 18.85
+    },
+    {
+      "request_id": "REQ-000243",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 65,
+      "confidence": 0.6,
+      "supplier_name": "Samsung Knox Devices",
+      "elapsed_s": 19.99
+    },
+    {
+      "request_id": "REQ-000244",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 49,
+      "confidence": 0.61,
+      "supplier_name": null,
+      "elapsed_s": 19.37
+    },
+    {
+      "request_id": "REQ-000245",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 17.42
+    },
+    {
+      "request_id": "REQ-000246",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.27,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 20.6
+    },
+    {
+      "request_id": "REQ-000247",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 22,
+      "confidence": 0.6,
+      "supplier_name": "Computacenter Devices",
+      "elapsed_s": 21.72
+    },
+    {
+      "request_id": "REQ-000248",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.49,
+      "supplier_name": null,
+      "elapsed_s": 18.55
+    },
+    {
+      "request_id": "REQ-000249",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.64,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 21.62
+    },
+    {
+      "request_id": "REQ-000250",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.7,
+      "supplier_name": null,
+      "elapsed_s": 19.58
+    },
+    {
+      "request_id": "REQ-000251",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 20.47
+    },
+    {
+      "request_id": "REQ-000252",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 41,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 18.98
+    },
+    {
+      "request_id": "REQ-000253",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 47,
+      "confidence": 0.4,
+      "supplier_name": "CDW Americas",
+      "elapsed_s": 18.36
+    },
+    {
+      "request_id": "REQ-000254",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.41,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 19.58
+    },
+    {
+      "request_id": "REQ-000255",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 22,
+      "confidence": 0.61,
+      "supplier_name": "Deloitte Technology Advisory",
+      "elapsed_s": 22.68
+    },
+    {
+      "request_id": "REQ-000256",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.33,
+      "supplier_name": null,
+      "elapsed_s": 22.5
+    },
+    {
+      "request_id": "REQ-000257",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 54,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 21.62
+    },
+    {
+      "request_id": "REQ-000258",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 41,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 19.25
+    },
+    {
+      "request_id": "REQ-000259",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 41,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 17.86
+    },
+    {
+      "request_id": "REQ-000260",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 18.22
+    },
+    {
+      "request_id": "REQ-000261",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 27,
+      "confidence": 0.17,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 21.42
+    },
+    {
+      "request_id": "REQ-000262",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 41,
+      "confidence": 0.39,
+      "supplier_name": null,
+      "elapsed_s": 19.07
+    },
+    {
+      "request_id": "REQ-000263",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 24,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 18.85
+    },
+    {
+      "request_id": "REQ-000264",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 46,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 15.59
+    },
+    {
+      "request_id": "REQ-000265",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 37,
+      "confidence": 0.3,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 19.46
+    },
+    {
+      "request_id": "REQ-000266",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 36,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 15.99
+    },
+    {
+      "request_id": "REQ-000267",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 54,
+      "confidence": 0.44,
+      "supplier_name": "IKEA Business",
+      "elapsed_s": 24.29
+    },
+    {
+      "request_id": "REQ-000268",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 54,
+      "confidence": 0.46,
+      "supplier_name": null,
+      "elapsed_s": 22.34
+    },
+    {
+      "request_id": "REQ-000269",
+      "scenario_tags": [
+        "capacity"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 50,
+      "confidence": 0.21,
+      "supplier_name": "Lenovo Commercial EU",
+      "elapsed_s": 21.31
+    },
+    {
+      "request_id": "REQ-000270",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 5.35
+    },
+    {
+      "request_id": "REQ-000271",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "clarified\u2192completed",
+      "decision_type": null,
+      "ais_score": null,
+      "risk_score": null,
+      "confidence": null,
+      "supplier_name": null,
+      "elapsed_s": 7.37
+    },
+    {
+      "request_id": "REQ-000272",
+      "scenario_tags": [
+        "missing_info"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 84,
+      "risk_score": 38,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 20.51
+    },
+    {
+      "request_id": "REQ-000273",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 7,
+      "confidence": 0.3,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 23.97
+    },
+    {
+      "request_id": "REQ-000274",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.49,
+      "supplier_name": null,
+      "elapsed_s": 21.35
+    },
+    {
+      "request_id": "REQ-000275",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.17,
+      "supplier_name": "Kinnarps Workplace",
+      "elapsed_s": 20.56
+    },
+    {
+      "request_id": "REQ-000276",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 28,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 21.51
+    },
+    {
+      "request_id": "REQ-000277",
+      "scenario_tags": [
+        "threshold"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 41,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 16.82
+    },
+    {
+      "request_id": "REQ-000278",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 44,
+      "confidence": 0.33,
+      "supplier_name": "CDW Americas",
+      "elapsed_s": 24.11
+    },
+    {
+      "request_id": "REQ-000279",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 47,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 21.58
+    },
+    {
+      "request_id": "REQ-000280",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 32,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 19.08
+    },
+    {
+      "request_id": "REQ-000281",
+      "scenario_tags": [
+        "lead_time"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 21,
+      "confidence": 0.36,
+      "supplier_name": "Steelcase Americas",
+      "elapsed_s": 21.72
+    },
+    {
+      "request_id": "REQ-000282",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 90,
+      "risk_score": 54,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 18.7
+    },
+    {
+      "request_id": "REQ-000283",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 24.01
+    },
+    {
+      "request_id": "REQ-000284",
+      "scenario_tags": [
+        "restricted"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 50,
+      "confidence": 0.5,
+      "supplier_name": null,
+      "elapsed_s": 18.95
+    },
+    {
+      "request_id": "REQ-000285",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 91,
+      "risk_score": 22,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 24.27
+    },
+    {
+      "request_id": "REQ-000286",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 97,
+      "risk_score": 30,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 21.03
+    },
+    {
+      "request_id": "REQ-000287",
+      "scenario_tags": [
+        "contradictory"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 90,
+      "risk_score": 54,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 18.86
+    },
+    {
+      "request_id": "REQ-000288",
+      "scenario_tags": [
+        "multilingual",
+        "multi_country"
+      ],
+      "state": "clarified\u2192escalated",
+      "decision_type": "escalated",
+      "ais_score": 84,
+      "risk_score": 54,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 20.64
+    },
+    {
+      "request_id": "REQ-000289",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 21.58
+    },
+    {
+      "request_id": "REQ-000290",
+      "scenario_tags": [
+        "multilingual"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 87,
+      "risk_score": 41,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 19.99
+    },
+    {
+      "request_id": "REQ-000291",
+      "scenario_tags": [
+        "multi_country"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 22,
+      "confidence": 0.41,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 21.32
+    },
+    {
+      "request_id": "REQ-000292",
+      "scenario_tags": [
+        "multi_country"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 90,
+      "risk_score": 41,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 18.85
+    },
+    {
+      "request_id": "REQ-000293",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.7,
+      "supplier_name": null,
+      "elapsed_s": 20.32
+    },
+    {
+      "request_id": "REQ-000294",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 20.04
+    },
+    {
+      "request_id": "REQ-000295",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 41,
+      "confidence": 0.4,
+      "supplier_name": "CDW Americas",
+      "elapsed_s": 19.48
+    },
+    {
+      "request_id": "REQ-000296",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 41,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 19.43
+    },
+    {
+      "request_id": "REQ-000297",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 8,
+      "confidence": 0.44,
+      "supplier_name": null,
+      "elapsed_s": 21.56
+    },
+    {
+      "request_id": "REQ-000298",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.15,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 22.15
+    },
+    {
+      "request_id": "REQ-000299",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.41,
+      "supplier_name": "Azure Enterprise",
+      "elapsed_s": 21.85
+    },
+    {
+      "request_id": "REQ-000300",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 37,
+      "confidence": 0.3,
+      "supplier_name": "Accenture Advisory Europe",
+      "elapsed_s": 21.82
+    },
+    {
+      "request_id": "REQ-000301",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 94,
+      "risk_score": 11,
+      "confidence": 0.13,
+      "supplier_name": "EPAM Delivery Services",
+      "elapsed_s": 19.9
+    },
+    {
+      "request_id": "REQ-000302",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 15,
+      "confidence": 0.82,
+      "supplier_name": "OVHcloud Enterprise",
+      "elapsed_s": 24.49
+    },
+    {
+      "request_id": "REQ-000303",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 100,
+      "risk_score": 37,
+      "confidence": 0.05,
+      "supplier_name": null,
+      "elapsed_s": 20.78
+    },
+    {
+      "request_id": "REQ-000304",
+      "scenario_tags": [
+        "standard"
+      ],
+      "state": "awaiting_approval",
+      "decision_type": "escalated",
+      "ais_score": 93,
+      "risk_score": 41,
+      "confidence": 0.4,
+      "supplier_name": null,
+      "elapsed_s": 15.23
+    }
+  ]
+}
